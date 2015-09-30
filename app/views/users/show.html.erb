@@ -1,2 +1,13 @@
 <h1>Hi, <%= current_user.name %>.</h1>
 <p>Welcome to your page.</p>
+
+
+<%#= link_to "New Item", new_item_path, class: 'btn btn-success' %>
+
+
+<h2>My Items</h2>
+<table class="table table-striped">
+  <%= render current_user.items %>
+</table>
+
+<%= render partial: 'items/form' %>

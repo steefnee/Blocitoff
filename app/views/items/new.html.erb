@@ -1,0 +1,6 @@
+<h1>New item to do</h1>
+<p>Add a new item</p>
+
+<div class="col-md-8">
+  <%= render partial: 'form', locals: { user: @user, item: Item.new } %>
+</div>
