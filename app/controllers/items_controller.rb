@@ -1,7 +1,5 @@
 class ItemsController < ApplicationController
 
-before_action :authorize_user, except: [:show, :new, :create]
-
   def new
     @item = Item.new
   end
@@ -23,13 +21,26 @@ before_action :authorize_user, except: [:show, :new, :create]
     @item = Item.find(params[:id])
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+
+    if @item.destroy
+      flash[:notice] = "\"#{@item.name}\" was completed!"
+    else
+      flash[:error] = "There was an error deleting the post."
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
   private
 
   def item_params
     params.require(:item).permit(:name)
   end
-
-
-
 
 end
