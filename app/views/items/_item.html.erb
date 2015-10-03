@@ -1,7 +1,9 @@
 <tr id="item-<%=item.id%>">
   <td>
-    <strong><%= item.name %></strong>
+    <strong><%= item.name %></strong> <%= distance_of_time_in_words(Time.now, item.created_at + 7.days) %> left to complete.
   </td>
+
+
   <td>
     <%= link_to "", item, method: :delete, class: 'glyphicon glyphicon-ok', remote: true %>
   </td>
