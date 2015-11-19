@@ -36,3 +36,5 @@ gem 'figaro', '1.0'
 gem 'bootstrap-sass'
 
 gem 'faker'
+
+gem 'active_model_serializers'
