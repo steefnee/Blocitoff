@@ -13,4 +13,10 @@ Rails.application.routes.draw do
     resources :items, only: [:create]
   end
 
+
+    namespace :api do
+      resources :users, only: [:index, :show]
+      resources :items, only: [:index, :show]
+    end
+
 end
