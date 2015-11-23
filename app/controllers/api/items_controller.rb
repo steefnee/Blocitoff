@@ -1,16 +1,19 @@
-class Api::V1::UsersController < Api::V1::BaseController
-  before_filter :authenticate_user
-  before_filter :authorize_user
+class Api::ItemsController < ApiController
+  skip_before_filter :authenticate_user!
 
-  def show
-    item = Item.find(params[:id])
+  def create
+    @item = current_user.item.build(item_params)
 
-    render json: user.to_json, status: 200
+    if item.save
+      render json: item
+    else
+      render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
+  end
   end
 
-  def index
-    items = Item.all
-
-    render json: users.to_json, status: 200
+  private
+  def item_params
+    params.require(:item).permit(:name)
   end
+
 end
