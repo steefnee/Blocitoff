@@ -1,8 +1,9 @@
 class Api::ItemsController < ApiController
-  skip_before_filter :authenticate_user!
 
   def create
-    @item = current_user.item.build(item_params)
+
+    @user = User.find(params[:user_id])
+    item = @user.items.build(item_params)
 
     if item.save
       render json: item

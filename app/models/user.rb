@@ -6,4 +6,13 @@ class User < ActiveRecord::Base
 
   has_many :items
 
+  before_create :generate_api_token
+
+  def generate_api_token
+    loop do
+      self.api_token = SecureRandom.base64(64)
+      break unless User.find_by(api_token: api_token)
+    end
+  end
+
 end
